@@ -1,7 +1,7 @@
 <template>
   <div class="progress-bar">
     <div class="progress" :style="{ width: progressPercentage + '%' }">
-      {{ progressPercentage.toFixed(5) }}
+      {{ progressPercentage.toFixed(6) }}
     </div>
   </div>
 </template>
@@ -10,13 +10,17 @@
 export default {
   data() {
     return {
+      currentDate: new Date(),
       progressPercentage: 10,
     };
   },
 
   mounted() {
     this.getPercentage();
-    setInterval(this.getPercentage, 5000);
+    setInterval(() => {
+      this.currentDate = new Date();
+      this.getPercentage();
+    }, 1000); 
   },
 
   methods: {
