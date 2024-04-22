@@ -1,8 +1,12 @@
 <template>
-  <div class="progress-bar">
-    <div class="progress" :style="{ width: progressPercentage + '%' }">
-      {{ progressPercentage.toFixed(6) }}
-    </div>
+  <div class="progress-bar z-10 text-white">
+    <div
+      class="progress mb-5"
+      :style="{ width: progressPercentage + '%' }"
+    ></div>
+    <p class="text-center mb-3">
+      {{ currentYear }} is already {{ progressPercentage.toFixed(6) }}%
+    </p>
   </div>
 </template>
 
@@ -11,7 +15,8 @@ export default {
   data() {
     return {
       currentDate: new Date(),
-      progressPercentage: 10,
+      currentYear: new Date().getFullYear(),
+      progressPercentage: 0,
     };
   },
 
@@ -20,7 +25,7 @@ export default {
     setInterval(() => {
       this.currentDate = new Date();
       this.getPercentage();
-    }, 1000); 
+    }, 100);
   },
 
   methods: {
@@ -31,7 +36,8 @@ export default {
       const startOfNextYear = new Date(currentYear + 1, 0, 1);
       const millisecondsPassed = currentDate - startOfYear;
       const totalMillisecondsInYear = startOfNextYear - startOfYear;
-      const progressPercent = (millisecondsPassed / totalMillisecondsInYear) * 100;
+      const progressPercent =
+        (millisecondsPassed / totalMillisecondsInYear) * 100;
       this.progressPercentage = progressPercent;
     },
   },
@@ -41,14 +47,26 @@ export default {
 <style scoped>
 .progress-bar {
   width: 100%;
-  height: 20px;
+  height: 50px;
   background-color: #f3f3f3;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.progress {
+.progress-bar .progress {
+  --time: 1s;
   height: 100%;
-  background-color: #4caf50;
-  border-radius: 5px;
+  background-color: #00ca82;
+  border-radius: 10px 0 0 10px;
+  transform-origin: left top;
+  transform: scaleX(0);
+  animation: scale var(--time) forwards;
+}
+@keyframes scale {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 </style>
