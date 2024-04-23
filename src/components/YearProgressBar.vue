@@ -1,7 +1,7 @@
 <template>
-  <div class="progress-bar z-10 text-white">
+  <div class="progress-bar rounded-xl w-full h-[50px] bg-white z-10 text-white">
     <div
-      class="progress mb-5"
+      class="progress rounded-l-xl mb-5"
       :style="{ width: progressPercentage + '%' }"
     ></div>
     <p class="text-center mb-3">
@@ -45,18 +45,10 @@ export default {
 </script>
 
 <style scoped>
-.progress-bar {
-  width: 100%;
-  height: 50px;
-  background-color: #f3f3f3;
-  border-radius: 10px;
-}
-
 .progress-bar .progress {
   --time: 1s;
   height: 100%;
   background-color: #00ca82;
-  border-radius: 10px 0 0 10px;
   transform-origin: left top;
   transform: scaleX(0);
   animation: scale var(--time) forwards;
