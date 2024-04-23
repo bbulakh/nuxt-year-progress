@@ -7,10 +7,10 @@ let currentYear = new Date().getFullYear();
     <img
       class="absolute w-full h-full pointer-events-none opacity-15"
       src="/public/Noise.png"
-      alt=""
+      alt="Noise pattern"
     />
-    <div class="content px-5">
-      <h1 class="text-5xl font-bold text-white text-center mb-5 z-10">
+    <div class="h-screen flex flex-col items-center justify-center mx-auto px-5 sm:max-w-[600px]">
+      <h1 class="text-3xl lg:text-5xl font-bold text-white text-center mb-5 z-10">
         {{ currentYear }} PROGRESS
       </h1>
       <slot />
@@ -19,14 +19,7 @@ let currentYear = new Date().getFullYear();
 </template>
 
 <style scoped>
-.content {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-}
+
 
 main {
   background: hsla(191, 75%, 60%, 1);
